@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 async function main() {
   
-  const amount = ethers.utils.parseEther("20");
+  const amount = ethers.utils.parseEther("10");
 
     // let [donator1, donator2] = await ethers.getSigners();
 
@@ -12,8 +12,8 @@ async function main() {
   await donors.deployed();
 
   console.log("Donation contract deployed to this address", donors.address);
-  const donation = await donors.donate();
-  console.log("Donated: ", donation, {value: amount});
+  const donation = await donors.donate({value: amount});
+  console.log("Donated: ", donation);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
