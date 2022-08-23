@@ -3,7 +3,6 @@ pragma solidity ^0.8.9;
 // Creating a contract
 contract Todo{
     
-
 struct Task{
   string task;
   bool isDone;
