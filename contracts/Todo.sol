@@ -1,18 +1,18 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9; 
-// Creating a contract
+
 contract Todo{
     
 struct Task{
   string task;
-  bool isDone;
+  bool isDone; //boolean to tell whether the task is completed or not
 }
  
-mapping (address => Task[]) private Users;
+mapping (address => Task[]) public Users; // Create a mapping to store task array with an associated user address
       
-// Defining function to add  a task
-function addTask(string calldata _task) external{
-  Users[msg.sender].push(Task({
+// Defining function to add a task
+function addTask(string calldata _task) external {
+  Users[msg.sender].push(Task({ //The push method to add the task to the mapping.
     task: _task,
     isDone: false
 }));
@@ -30,14 +30,14 @@ function updateStatus(uint256 _taskId,bool _status) external{
 }
    
 // Defining a function to delete a task
-function deleteTask(uint256 _taskIndex) external
-{
+//deleteTask method will take the task index and then delete the element from the array.after
+function deleteTask(uint256 _taskIndex) external {
   delete Users[msg.sender][_taskIndex];
 }
    
 // Defining a function to get task count.
-function getTaskCount() external view returns (uint256)
-{
+//This will help to get the count of tasks can be retrieved as the task array length
+function getTaskCount() external view returns (uint256){
   return Users[msg.sender].length;
 } 
 }
